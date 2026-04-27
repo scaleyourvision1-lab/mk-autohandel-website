@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="52" viewBox="0 0 220 52">
+  <!-- Blue badge -->
+  <rect width="52" height="52" rx="6" fill="#1A4FCC"/>
+  <text x="26" y="34" font-family="'Arial Black','Arial',sans-serif" font-size="24" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">MK</text>
+  <!-- Wordmark -->
+  <text x="66" y="22" font-family="'Arial','sans-serif'" font-size="17" font-weight="700" fill="#111111" letter-spacing="0.5">Manfred Kirr</text>
+  <text x="66" y="40" font-family="'Arial','sans-serif'" font-size="11" font-weight="400" fill="#555555" letter-spacing="1.5">AUTOHANDEL</text>
+</svg>
