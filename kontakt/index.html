@@ -240,19 +240,51 @@
     // Form submit
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
+      var form = this;
       var datenschutz = document.getElementById('datenschutz');
       var errorEl = document.getElementById('form-error');
+      var successEl = document.getElementById('form-success');
+      var submitBtn = form.querySelector('button[type="submit"]');
+
+      // Datenschutz check
       if (!datenschutz.checked) {
+        errorEl.textContent = 'Bitte stimmen Sie der Datenschutzerklärung zu, um die Nachricht zu senden.';
         errorEl.style.display = 'block';
         datenschutz.focus();
         return;
       }
       errorEl.style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-      this.reset();
-      setTimeout(() => {
-        document.getElementById('form-success').style.display = 'none';
-      }, 6000);
+
+      // Send to Formspree
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Wird gesendet…';
+
+      fetch('https://formspree.io/f/xwvajrzy', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(response) {
+        if (response.ok) {
+          successEl.style.display = 'block';
+          form.reset();
+          setTimeout(function() { successEl.style.display = 'none'; }, 6000);
+        } else {
+          return response.json().then(function(data) {
+            var msg = (data.errors && data.errors.map(function(e){ return e.message; }).join(', ')) || 'Fehler beim Senden. Bitte versuchen Sie es erneut.';
+            errorEl.textContent = msg;
+            errorEl.style.display = 'block';
+          });
+        }
+      })
+      .catch(function() {
+        errorEl.textContent = 'Netzwerkfehler. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.';
+        errorEl.style.display = 'block';
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Nachricht senden';
+      });
     });
   </script>
   <script src="../js/chatbot.js"></script>
