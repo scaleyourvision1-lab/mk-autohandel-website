@@ -36,9 +36,9 @@
     },
     {
       match: ['zulassung','kennzeichen','anmelden','ummelden','abmelden','zulassungsdienst','fahrzeugbrief','fahrzeugschein','evb','anni','anneliese','tüv','hu ','hauptuntersuchung'],
-      reply: 'Für alle Fragen rund um Zulassung, An- und Ummeldung ist Anneliese Kirr Ihre persönliche Ansprechpartnerin:',
+      reply: 'Für alle Fragen rund um Zulassung, An- und Ummeldung ist Anne Kirr Ihre persönliche Ansprechpartnerin:',
       actions: [
-        { label: '💬 WhatsApp – Anneliese', url: L.wa_anni, style: 'w' }
+        { label: '💬 WhatsApp – Anne', url: L.wa_anni, style: 'w' }
       ]
     },
     {
